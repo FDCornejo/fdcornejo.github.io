@@ -1,17 +1,41 @@
 # fdcornejo.github.io
 
-Personal CV site of Daniel Cornejo, served by GitHub Pages at <https://fdcornejo.github.io>.
+Personal CV site of Daniel Cornejo, published at <https://fdcornejo.github.io>.
 
-Plain HTML + CSS, no build step:
+Built with **Vue 3**, **Vuetify 3**, **Vue Router** and **Vite**.
 
-- `index.html` — content
-- `css/style.css` — styles (color palette in the `:root` variables)
-- `img/me.jpg` — profile photo (480×480)
+## Updating the content
 
-To preview locally:
+All the CV text (education, experience, skills, contact…) lives in
+[`src/data/cv.js`](src/data/cv.js). Edit that file; the components read from it.
+
+## Development
+
+Requires Node.js 20 or newer.
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev       # local server with hot reload
+npm run build     # production build in dist/
+npm run preview   # serve the dist/ build locally
 ```
 
-Then open <http://localhost:8000>.
+## Deployment
+
+Every push to `master` builds the site and publishes it with GitHub Actions
+(`.github/workflows/deploy.yml`). In the repository settings, **Pages → Source**
+must be set to **GitHub Actions**.
+
+## Structure
+
+```
+src/
+  main.js              app entry
+  router.js            routes (/ and /about), hash history
+  plugins/vuetify.js   Vuetify setup and color palette
+  data/cv.js           CV content
+  components/AppNav.vue  top bar + contact drawer
+  views/HomeView.vue   CV page
+  views/AboutView.vue  "About this page"
+  assets/me.jpg        profile photo
+```
